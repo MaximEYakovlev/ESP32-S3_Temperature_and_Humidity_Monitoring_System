@@ -1,0 +1,115 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2b (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (27) boot: ESP-IDF v5.3.1 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep 18 2024 11:24:23[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.2[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (57) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (79) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c090020 size=23a7ch (146044) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=00033aa4 vaddr=3fc9a900 size=04988h ( 18824) load[0m
+[0;32mI (130) esp_image: segment 2: paddr=00038434 vaddr=40374000 size=07be4h ( 31716) load[0m
+[0;32mI (138) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=8c580h (574848) map[0m
+[0;32mI (243) esp_image: segment 4: paddr=000cc5a8 vaddr=4037bbe4 size=0ece4h ( 60644) load[0m
+[0;32mI (266) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (266) boot: Disabling RNG early entropy source...[0m
+[0;32mI (278) cpu_start: Multicore app[0m
+[0;32mI (287) cpu_start: Pro cpu start user code[0m
+[0;32mI (287) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (287) app_init: Application information:[0m
+[0;32mI (290) app_init: Project name:     ESP32-S3_SHT40_webserver[0m
+[0;32mI (296) app_init: App version:      1[0m
+[0;32mI (301) app_init: Compile time:     Sep 18 2024 11:24:15[0m
+[0;32mI (307) app_init: ELF file SHA256:  9cecf0e8c...[0m
+[0;32mI (312) app_init: ESP-IDF:          v5.3.1[0m
+[0;32mI (317) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (321) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (326) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (331) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (338) heap_init: At 3FCA2E80 len 00046890 (282 KiB): RAM[0m
+[0;32mI (344) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (351) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (357) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (364) spi_flash: detected chip: generic[0m
+[0;32mI (368) spi_flash: flash io: dio[0m
+[0;33mW (372) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (385) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (396) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (402) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (410) main_task: Started on CPU0[0m
+[0;32mI (420) main_task: Calling app_main()[0m
+[0;32mI (440) pp: pp rom version: e7ae62f[0m
+[0;32mI (440) net80211: net80211 rom version: e7ae62f[0m
+I (450) wifi:wifi driver task: 3fcad118, prio:23, stack:6656, core=0
+I (460) wifi:wifi firmware version: ccaebfa
+I (460) wifi:wifi certification version: v7.0
+I (460) wifi:config NVS flash: enabled
+I (460) wifi:config nano formating: disabled
+I (460) wifi:Init data frame dynamic rx buffer num: 32
+I (470) wifi:Init static rx mgmt buffer num: 5
+I (470) wifi:Init management short buffer num: 32
+I (470) wifi:Init dynamic tx buffer num: 32
+I (480) wifi:Init static tx FG buffer num: 2
+I (480) wifi:Init static rx buffer size: 1600
+I (490) wifi:Init static rx buffer num: 10
+I (490) wifi:Init dynamic rx buffer num: 32
+[0;32mI (490) wifi_init: rx ba win: 6[0m
+[0;32mI (500) wifi_init: accept mbox: 6[0m
+[0;32mI (500) wifi_init: tcpip mbox: 32[0m
+[0;32mI (510) wifi_init: udp mbox: 6[0m
+[0;32mI (510) wifi_init: tcp mbox: 6[0m
+[0;32mI (510) wifi_init: tcp tx win: 5760[0m
+[0;32mI (520) wifi_init: tcp rx win: 5760[0m
+[0;32mI (520) wifi_init: tcp mss: 1440[0m
+[0;32mI (520) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (530) wifi_init: WiFi RX IRAM OP enabled[0m
+W (530) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2
+[0;32mI (540) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;33mW (590) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+I (610) wifi:mode : sta (48:ca:43:26:2d:24)
+I (610) wifi:enable tsf
+[0;32mI (610) wifi_station: wifi_init_sta finished.[0m
+I (620) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (620) wifi:state: init -> auth (0xb0)
+I (630) wifi:state: auth -> assoc (0x0)
+I (630) wifi:state: assoc -> run (0x10)
+I (740) wifi:connected with Nist, aid = 1, channel 1, BW20, bssid = 50:ff:20:8b:a1:ee
+I (750) wifi:security: WPA2-PSK, phy: bgn, rssi: -50
+I (750) wifi:pm start, type: 1
+
+I (750) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (760) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (770) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+I (790) wifi:<ba-add>idx:0 (ifx:0, 50:ff:20:8b:a1:ee), tid:0, ssn:3, winSize:64
+[0;32mI (1770) esp_netif_handlers: sta ip: 192.168.0.109, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (1770) wifi_station: got ip:192.168.0.109[0m
+[0;32mI (1770) wifi_station: connected to ap SSID:Nist password:vistnist21[0m
+[0;32mI (1780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (1780) main_task: Returned from app_main()[0m
+[0;32mI (3780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (5780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (7780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (9780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (11780) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (88310) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (95240) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;33mW (108500) httpd_uri: httpd_uri: URI '/favicon.ico' not found[0m
+[0;33mW (108500) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (110230) SHT40_SENSOR: Температура: 25.00°C[0m
+[0;32mI (997770) SHT40_SENSOR: Температура: 25.00°C[0m

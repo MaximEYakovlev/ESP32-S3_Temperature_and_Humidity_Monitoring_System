@@ -1,0 +1,61 @@
+[0/1] Re-running CMake...
+-- Component directory /home/maxim/ESP32-S3_SHT40_webserver/components/esp does not contain a CMakeLists.txt file. No component will be added
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32s3
+-- Project sdkconfig file /home/maxim/ESP32-S3_SHT40_webserver/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- App "ESP32-S3_SHT40_webserver" version: 1
+-- Adding linker script /home/maxim/ESP32-S3_SHT40_webserver/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/maxim/ESP32-S3_SHT40_webserver/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_vfs_console esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/maxim/esp/esp-idf/components/app_trace /home/maxim/esp/esp-idf/components/app_update /home/maxim/esp/esp-idf/components/bootloader /home/maxim/esp/esp-idf/components/bootloader_support /home/maxim/esp/esp-idf/components/bt /home/maxim/esp/esp-idf/components/cmock /home/maxim/esp/esp-idf/components/console /home/maxim/esp/esp-idf/components/cxx /home/maxim/esp/esp-idf/components/driver /home/maxim/esp/esp-idf/components/efuse /home/maxim/esp/esp-idf/components/esp-tls /home/maxim/esp/esp-idf/components/esp_adc /home/maxim/esp/esp-idf/components/esp_app_format /home/maxim/esp/esp-idf/components/esp_bootloader_format /home/maxim/esp/esp-idf/components/esp_coex /home/maxim/esp/esp-idf/components/esp_common /home/maxim/esp/esp-idf/components/esp_driver_ana_cmpr /home/maxim/esp/esp-idf/components/esp_driver_cam /home/maxim/esp/esp-idf/components/esp_driver_dac /home/maxim/esp/esp-idf/components/esp_driver_gpio /home/maxim/esp/esp-idf/components/esp_driver_gptimer /home/maxim/esp/esp-idf/components/esp_driver_i2c /home/maxim/esp/esp-idf/components/esp_driver_i2s /home/maxim/esp/esp-idf/components/esp_driver_isp /home/maxim/esp/esp-idf/components/esp_driver_jpeg /home/maxim/esp/esp-idf/components/esp_driver_ledc /home/maxim/esp/esp-idf/components/esp_driver_mcpwm /home/maxim/esp/esp-idf/components/esp_driver_parlio /home/maxim/esp/esp-idf/components/esp_driver_pcnt /home/maxim/esp/esp-idf/components/esp_driver_ppa /home/maxim/esp/esp-idf/components/esp_driver_rmt /home/maxim/esp/esp-idf/components/esp_driver_sdio /home/maxim/esp/esp-idf/components/esp_driver_sdm /home/maxim/esp/esp-idf/components/esp_driver_sdmmc /home/maxim/esp/esp-idf/components/esp_driver_sdspi /home/maxim/esp/esp-idf/components/esp_driver_spi /home/maxim/esp/esp-idf/components/esp_driver_touch_sens /home/maxim/esp/esp-idf/components/esp_driver_tsens /home/maxim/esp/esp-idf/components/esp_driver_uart /home/maxim/esp/esp-idf/components/esp_driver_usb_serial_jtag /home/maxim/esp/esp-idf/components/esp_eth /home/maxim/esp/esp-idf/components/esp_event /home/maxim/esp/esp-idf/components/esp_gdbstub /home/maxim/esp/esp-idf/components/esp_hid /home/maxim/esp/esp-idf/components/esp_http_client /home/maxim/esp/esp-idf/components/esp_http_server /home/maxim/esp/esp-idf/components/esp_https_ota /home/maxim/esp/esp-idf/components/esp_https_server /home/maxim/esp/esp-idf/components/esp_hw_support /home/maxim/esp/esp-idf/components/esp_lcd /home/maxim/esp/esp-idf/components/esp_local_ctrl /home/maxim/esp/esp-idf/components/esp_mm /home/maxim/esp/esp-idf/components/esp_netif /home/maxim/esp/esp-idf/components/esp_netif_stack /home/maxim/esp/esp-idf/components/esp_partition /home/maxim/esp/esp-idf/components/esp_phy /home/maxim/esp/esp-idf/components/esp_pm /home/maxim/esp/esp-idf/components/esp_psram /home/maxim/esp/esp-idf/components/esp_ringbuf /home/maxim/esp/esp-idf/components/esp_rom /home/maxim/esp/esp-idf/components/esp_system /home/maxim/esp/esp-idf/components/esp_timer /home/maxim/esp/esp-idf/components/esp_vfs_console /home/maxim/esp/esp-idf/components/esp_wifi /home/maxim/esp/esp-idf/components/espcoredump /home/maxim/esp/esp-idf/components/esptool_py /home/maxim/esp/esp-idf/components/fatfs /home/maxim/esp/esp-idf/components/freertos /home/maxim/esp/esp-idf/components/hal /home/maxim/esp/esp-idf/components/heap /home/maxim/esp/esp-idf/components/http_parser /home/maxim/esp/esp-idf/components/idf_test /home/maxim/esp/esp-idf/components/ieee802154 /home/maxim/esp/esp-idf/components/json /home/maxim/esp/esp-idf/components/log /home/maxim/esp/esp-idf/components/lwip /home/maxim/ESP32-S3_SHT40_webserver/main /home/maxim/esp/esp-idf/components/mbedtls /home/maxim/esp/esp-idf/components/mqtt /home/maxim/esp/esp-idf/components/newlib /home/maxim/esp/esp-idf/components/nvs_flash /home/maxim/esp/esp-idf/components/nvs_sec_provider /home/maxim/esp/esp-idf/components/openthread /home/maxim/esp/esp-idf/components/partition_table /home/maxim/esp/esp-idf/components/perfmon /home/maxim/esp/esp-idf/components/protobuf-c /home/maxim/esp/esp-idf/components/protocomm /home/maxim/esp/esp-idf/components/pthread /home/maxim/esp/esp-idf/components/sdmmc /home/maxim/esp/esp-idf/components/soc /home/maxim/esp/esp-idf/components/spi_flash /home/maxim/esp/esp-idf/components/spiffs /home/maxim/esp/esp-idf/components/tcp_transport /home/maxim/esp/esp-idf/components/touch_element /home/maxim/esp/esp-idf/components/ulp /home/maxim/esp/esp-idf/components/unity /home/maxim/esp/esp-idf/components/usb /home/maxim/esp/esp-idf/components/vfs /home/maxim/esp/esp-idf/components/wear_levelling /home/maxim/esp/esp-idf/components/wifi_provisioning /home/maxim/esp/esp-idf/components/wpa_supplicant /home/maxim/esp/esp-idf/components/xtensa
+-- Configuring done (3.1s)
+-- Generating done (0.4s)
+-- Build files have been written to: /home/maxim/ESP32-S3_SHT40_webserver/build
+[1/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/maxim/ESP32-S3_SHT40_webserver/main/main.c:31:20: warning: 'TAG_WEB' defined but not used [-Wunused-variable]
+   31 | static const char *TAG_WEB = "WEB_SERVER";
+      |                    ^~~~~~~
+[2/9] Linking C static library esp-idf/main/libmain.a
+[3/9] Performing build step for 'bootloader'
+[0/1] Re-running CMake...
+-- Building ESP-IDF components for target esp32s3
+-- Project sdkconfig file /home/maxim/ESP32-S3_SHT40_webserver/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Adding linker script /home/maxim/esp/esp-idf/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/bootloader/subproject/main/ld/esp32s3/bootloader.ld
+-- Adding linker script /home/maxim/esp/esp-idf/components/bootloader/subproject/main/ld/esp32s3/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_bootloader_format esp_common esp_hw_support esp_rom esp_system esptool_py freertos hal log main micro-ecc newlib partition_table soc spi_flash xtensa
+-- Component paths: /home/maxim/esp/esp-idf/components/bootloader /home/maxim/esp/esp-idf/components/bootloader_support /home/maxim/esp/esp-idf/components/efuse /home/maxim/esp/esp-idf/components/esp_app_format /home/maxim/esp/esp-idf/components/esp_bootloader_format /home/maxim/esp/esp-idf/components/esp_common /home/maxim/esp/esp-idf/components/esp_hw_support /home/maxim/esp/esp-idf/components/esp_rom /home/maxim/esp/esp-idf/components/esp_system /home/maxim/esp/esp-idf/components/esptool_py /home/maxim/esp/esp-idf/components/freertos /home/maxim/esp/esp-idf/components/hal /home/maxim/esp/esp-idf/components/log /home/maxim/esp/esp-idf/components/bootloader/subproject/main /home/maxim/esp/esp-idf/components/bootloader/subproject/components/micro-ecc /home/maxim/esp/esp-idf/components/newlib /home/maxim/esp/esp-idf/components/partition_table /home/maxim/esp/esp-idf/components/soc /home/maxim/esp/esp-idf/components/spi_flash /home/maxim/esp/esp-idf/components/xtensa
+-- Configuring done (1.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/maxim/ESP32-S3_SHT40_webserver/build/bootloader
+[1/1] cd /home/maxim/ESP32-S3_SHT40_webserver/build/bootloader/esp-idf/esptool_py && /home/maxim/.espressif/python_env/idf5.3_py3.12_env/bin/python /home/maxim/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/maxim/ESP32-S3_SHT40_webserver/build/bootloader/bootloader.bin
+Bootloader binary size 0x5260 bytes. 0x2da0 bytes (36%) free.
+[4/9] No install step for 'bootloader'
+[5/9] Completed 'bootloader'
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable ESP32-S3_SHT40_webserver.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.8.dev5
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated /home/maxim/ESP32-S3_SHT40_webserver/build/ESP32-S3_SHT40_webserver.bin
+[9/9] cd /home/maxim/ESP32-S3_SHT40_webserver/build/esp-idf/esptool_py && /home/maxim/.espressif/python_env/idf5.3_py3.12_env/bin/python /home/maxim/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/maxim/ESP32-S3_SHT40_webserver/build/partition_table/partition-table.bin /home/maxim/ESP32-S3_SHT40_webserver/build/ESP32-S3_SHT40_webserver.bin
+ESP32-S3_SHT40_webserver.bin binary size 0xcb2b0 bytes. Smallest app partition is 0x100000 bytes. 0x34d50 bytes (21%) free.
