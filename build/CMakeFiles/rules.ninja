@@ -1793,7 +1793,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_main_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake --regenerate-during-build -S/home/maxim/ESP32-S3_SHT40_webserver -B/home/maxim/ESP32-S3_SHT40_webserver/build
+  command = /usr/bin/cmake --regenerate-during-build -S/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER -B/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build
   description = Re-running CMake...
   generator = 1
 

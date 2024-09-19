@@ -1,4 +1,4 @@
-# Install script for directory: /home/maxim/ESP32-S3_SHT40_webserver/main
+# Install script for directory: /home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

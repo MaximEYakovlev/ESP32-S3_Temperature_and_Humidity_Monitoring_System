@@ -1,13 +1,13 @@
 # Target labels
  bootloader
 # Source files and their labels
-/home/maxim/ESP32-S3_SHT40_webserver/build/CMakeFiles/bootloader
-/home/maxim/ESP32-S3_SHT40_webserver/build/CMakeFiles/bootloader.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/CMakeFiles/bootloader-complete.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
-/home/maxim/ESP32-S3_SHT40_webserver/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/CMakeFiles/bootloader
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/CMakeFiles/bootloader.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/CMakeFiles/bootloader-complete.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

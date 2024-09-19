@@ -12,5 +12,8 @@
     ],
     "idf.port": "/dev/ttyUSB0",
     "idf.pythonBinPath": "/home/maxim/Desktop/NIST/rust-react-tauri-desktop/python_env/idf5.3_py3.12_env/bin/python",
-    "idf.toolsPath": "/home/maxim/Desktop/NIST/rust-react-tauri-desktop"
+    "idf.toolsPath": "/home/maxim/Desktop/NIST/rust-react-tauri-desktop",
+    "files.associations": {
+        "queue.h": "c"
+    }
 }
