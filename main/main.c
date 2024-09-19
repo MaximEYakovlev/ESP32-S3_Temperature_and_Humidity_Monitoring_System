@@ -146,8 +146,11 @@ esp_err_t sensor_data_get_handler(httpd_req_t *req)
         snprintf(response, sizeof(response), "{\"error\": \"Failed to get sensor data\"}"); // Send an error message if data retrieval fails
     }
 
-    httpd_resp_set_type(req, "application/json");     // Set the response type to JSON
-    httpd_resp_send(req, response, strlen(response)); // Send the response
+    httpd_resp_set_type(req, "application/json");                            // Set the response type to JSON
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");             // Allow all origins
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET");          // Allow only GET requests
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Headers", "Content-Type"); // Allow headers
+    httpd_resp_send(req, response, strlen(response));                        // Send the response
 
     return ESP_OK; // Return success
 }
