@@ -1,15 +1,15 @@
-#include <stdio.h>
-#include "driver/i2c.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-#include "esp_http_server.h"
-#include "esp_log.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
-#include "nvs_flash.h"
-#include "esp_system.h"
-#include "freertos/event_groups.h"
+#include <stdio.h>                 // Include the standard I/O library for input and output functions.
+#include "driver/i2c.h"            // Include the I2C driver library for I2C communication.
+#include "freertos/FreeRTOS.h"     // Include FreeRTOS definitions and macros for operating system functionality.
+#include "freertos/task.h"         // Include FreeRTOS task management functions for creating and managing tasks.
+#include "freertos/queue.h"        // Include FreeRTOS queue management functions for inter-task communication.
+#include "esp_http_server.h"       // Include the HTTP server library for handling HTTP requests.
+#include "esp_log.h"               // Include the logging library for logging messages and errors.
+#include "esp_wifi.h"              // Include the Wi-Fi library for Wi-Fi functionality.
+#include "esp_event.h"             // Include the event library for event handling in ESP-IDF.
+#include "nvs_flash.h"             // Include the Non-Volatile Storage (NVS) library for flash memory operations.
+#include "esp_system.h"            // Include system-level functions and definitions for the ESP32 system.
+#include "freertos/event_groups.h" // Include FreeRTOS event group functions for managing multiple event flags.
 
 // Definitions for I2C and SHT40 sensor
 #define I2C_MASTER_NUM 0          // I2C port number
