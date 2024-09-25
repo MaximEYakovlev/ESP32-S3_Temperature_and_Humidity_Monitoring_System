@@ -54,6 +54,16 @@ void i2c_master_init()
     i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0); // Install the I2C driver
 }
 
+// ADC initialization function
+void adc_init()
+{
+    // Configure the ADC width (resolution: 12-bit)
+    adc1_config_width(ADC_WIDTH_BIT_12);
+
+    // Configure attenuation (for full-scale voltage range: 0 to 3.3V)
+    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_11);
+}
+
 // Function to read temperature and humidity from SHT40 sensor
 static esp_err_t sht40_read_data(float *temperature, float *humidity)
 {
