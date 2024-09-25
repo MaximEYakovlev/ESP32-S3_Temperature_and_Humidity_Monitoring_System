@@ -61,7 +61,7 @@ void adc_init()
     adc1_config_width(ADC_WIDTH_BIT_12);
 
     // Configure attenuation (for full-scale voltage range: 0 to 3.3V)
-    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_11);
+    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_12);
 }
 
 // Function to read temperature and humidity from SHT40 sensor
@@ -151,7 +151,7 @@ void read_adc_task(void *arg)
         float voltage_0 = (adc_value_0 * 3.3) / 4095.0;
 
         // Log the voltage readings
-        ESP_LOGI("ADC", "Channel 0: %.2f V, Channel 1: %.2f V", voltage_0);
+        ESP_LOGI("ADC", "Channel 0: %.2f V", voltage_0);
 
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
     }
