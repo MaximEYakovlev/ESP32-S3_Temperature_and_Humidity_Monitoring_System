@@ -301,6 +301,9 @@ void app_main(void)
     // Create a task to read sensor data from the SHT40 sensor
     xTaskCreate(read_sensor_task, "read_sensor_task", 2048, NULL, 5, NULL);
 
+    // Create a task for reading ADC values
+    xTaskCreate(read_adc_task, "read_adc_task", 2048, NULL, 5, NULL);
+
     // Create a task to run the web server
     xTaskCreate(web_server_task, "web_server_task", 4096, NULL, 5, NULL);
 }
