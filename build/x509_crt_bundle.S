@@ -1,4 +1,4 @@
-/* * Data converted from /home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

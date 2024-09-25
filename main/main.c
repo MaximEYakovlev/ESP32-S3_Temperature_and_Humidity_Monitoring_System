@@ -25,6 +25,9 @@
 #define WIFI_PASS "vistnist21"
 #define MAX_RETRY 5 // Maximum number of retry attempts for Wi-Fi connection
 
+// Define GPIO1 for ADC
+#define ADC_CHANNEL ADC1_CHANNEL_0 // GPIO1 corresponds to ADC1 channel 0
+
 // Event group and tags for logging
 static EventGroupHandle_t s_wifi_event_group;
 static const int WIFI_CONNECTED_BIT = BIT0; // Bit used to indicate connection to Wi-Fi

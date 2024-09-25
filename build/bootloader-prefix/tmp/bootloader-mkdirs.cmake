@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "/home/maxim/esp/esp-idf/components/bootloader/subproject"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/tmp"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src"
-  "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/tmp"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/src/bootloader-stamp"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/src"
+  "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

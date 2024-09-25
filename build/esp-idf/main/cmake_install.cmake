@@ -1,4 +1,4 @@
-# Install script for directory: /home/maxim/Desktop/ESP32-S3_SHT40_WEB_SERVER/main
+# Install script for directory: /home/maxim/Desktop/ESP32-S3_Temperature_and_Humidity_Monitoring_System/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
