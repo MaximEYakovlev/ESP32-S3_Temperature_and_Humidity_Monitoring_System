@@ -138,6 +138,25 @@ void read_sensor_task(void *arg)
     }
 }
 
+// Task for reading ADC values from channel
+void read_adc_task(void *arg)
+{
+    adc_init(); // Initialize ADC
+
+    while (1)
+    {
+        int adc_value_0 = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
+
+        // Convert raw values to voltage (assuming 12-bit resolution, 3.3V reference)
+        float voltage_0 = (adc_value_0 * 3.3) / 4095.0;
+
+        // Log the voltage readings
+        ESP_LOGI("ADC", "Channel 0: %.2f V, Channel 1: %.2f V", voltage_0);
+
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
+    }
+}
+
 // HTTP request handler for serving temperature and humidity data
 esp_err_t sensor_data_get_handler(httpd_req_t *req)
 {
