@@ -1,5 +1,6 @@
 #include <stdio.h>                 // Include the standard I/O library for input and output functions.
 #include "driver/i2c.h"            // Include the I2C driver library for I2C communication.
+#include "driver/adc.h"            // Include the ADC driver for analog-to-digital conversion
 #include "freertos/FreeRTOS.h"     // Include FreeRTOS definitions and macros for operating system functionality.
 #include "freertos/task.h"         // Include FreeRTOS task management functions for creating and managing tasks.
 #include "freertos/queue.h"        // Include FreeRTOS queue management functions for inter-task communication.
