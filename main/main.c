@@ -34,8 +34,9 @@ static const int WIFI_CONNECTED_BIT = BIT0; // Bit used to indicate connection t
 static const char *TAG_WIFI = "wifi_station";
 static const char *TAG_SHT40 = "SHT40_SENSOR";
 static const char *TAG_WEB = "WEB_SERVER";
-static int s_retry_num = 0; // Counter for Wi-Fi connection retries
-QueueHandle_t temp_queue;   // Queue used for sharing temperature and humidity data
+static int s_retry_num = 0;   // Counter for Wi-Fi connection retries
+QueueHandle_t temp_queue;     // Queue used for sharing temperature and humidity data
+QueueHandle_t temp_queue_adc; // Queue used for sharing ADC data
 
 // I2C initialization function
 void i2c_master_init()
@@ -112,6 +113,7 @@ void read_sensor_task(void *arg)
     {
         float temperature = 0.0;
         float humidity = 0.0;
+
         if (sht40_read_data(&temperature, &humidity) == ESP_OK) // Read sensor data
         {
             ESP_LOGI(TAG_SHT40, "Temperature: %.2f°C, Humidity: %.2f%%", temperature, humidity); // Log the sensor data
@@ -145,34 +147,52 @@ void read_adc_task(void *arg)
 
     while (1)
     {
-        int adc_value_0 = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
+        int adc_value = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
 
         // Convert raw values to voltage (assuming 12-bit resolution, 3.3V reference)
-        float voltage_0 = (adc_value_0 * 3.3) / 4095.0;
+        float voltage = (adc_value * 3.3) / 4095.0;
+
+        // Structure to hold ADC data
+        typedef struct
+        {
+            float voltage;
+        } adc_data;
+
+        adc_data data_r = {voltage};                        // Create a ADC data structure
+        xQueueSend(temp_queue_adc, &data_r, portMAX_DELAY); // Send the data to the queue
 
         // Log the voltage readings
-        ESP_LOGI("ADC", "Channel 0: %.2f V", voltage_0);
+        ESP_LOGI("ADC", "Channel 0: %.2f V", voltage);
 
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
     }
 }
 
-// HTTP request handler for serving temperature and humidity data
+// HTTP request handler for serving temperature, humidity, and ADC data
 esp_err_t sensor_data_get_handler(httpd_req_t *req)
 {
     typedef struct
     {
         float temperature;
         float humidity;
+
     } sensor_data_t;
 
+    typedef struct
+    {
+
+        float voltage;
+    } adc_data;
+
     sensor_data_t data;
+    adc_data data_r;
+
     char response[128];
 
     // Retrieve sensor data from the queue
-    if (xQueueReceive(temp_queue, &data, pdMS_TO_TICKS(100)) == pdPASS)
+    if (xQueueReceive(temp_queue, &data, pdMS_TO_TICKS(100)) == pdPASS && xQueueReceive(temp_queue_adc, &data_r, pdMS_TO_TICKS(100)) == pdPASS)
     {
-        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\"}", data.temperature, data.humidity); // Format the sensor data into a JSON response
+        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\",  \"voltage\": \"%.2f\"}", data.temperature, data.humidity, data_r.voltage); // Format the sensor data into a JSON response
     }
     else
     {
@@ -298,12 +318,17 @@ void app_main(void)
     // Create a queue for temperature and humidity data
     temp_queue = xQueueCreate(10, sizeof(float) * 2); // Queue can hold 10 sensor readings
 
+    // Create a queue for ADC data
+    temp_queue_adc = xQueueCreate(10, sizeof(float) * 2); // Queue can hold 10 sensor readings
+
     // Create a task to read sensor data from the SHT40 sensor
-    xTaskCreate(read_sensor_task, "read_sensor_task", 2048, NULL, 5, NULL);
+    xTaskCreate(read_sensor_task, "read_sensor_task", 4096, NULL, 5, NULL);
 
     // Create a task for reading ADC values
-    xTaskCreate(read_adc_task, "read_adc_task", 2048, NULL, 5, NULL);
+    xTaskCreate(read_adc_task, "read_adc_task", 4096, NULL, 5, NULL);
 
     // Create a task to run the web server
-    xTaskCreate(web_server_task, "web_server_task", 4096, NULL, 5, NULL);
+    xTaskCreate(web_server_task, "web_server_task", 8192, NULL, 5, NULL);
+
+    ESP_LOGI(TAG_WIFI, "System ready");
 }
