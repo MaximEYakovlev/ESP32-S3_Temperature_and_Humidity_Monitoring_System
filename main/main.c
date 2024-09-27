@@ -177,20 +177,19 @@ void read_adc_task(void *arg)
     }
 }
 
-// HTTP request handler for serving temperature, humidity, and ADC data
+// HTTP request handler for serving temperature, humidity and ADC data
 esp_err_t data_get_handler(httpd_req_t *req)
 {
     typedef struct
     {
         float temperature;
         float humidity;
-
     } sensor_data_t;
 
     typedef struct
     {
-
-        float voltage;
+        float voltage_0;
+        float voltage_1;
     } adc_data;
 
     sensor_data_t data;
@@ -201,7 +200,7 @@ esp_err_t data_get_handler(httpd_req_t *req)
     // Retrieve sensor data from the queue
     if (xQueueReceive(temp_queue, &data, pdMS_TO_TICKS(100)) == pdPASS && xQueueReceive(temp_queue_adc, &data_r, pdMS_TO_TICKS(100)) == pdPASS)
     {
-        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\",  \"voltage\": \"%.2f\"}", data.temperature, data.humidity, data_r.voltage); // Format the sensor data into a JSON response
+        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\",  \"voltage ADC1\": \"%.2f\", \"voltage ADC2\": \"%.2f\"}", data.temperature, data.humidity, data_r.voltage_0, data_r.voltage_1); // Format the sensor data into a JSON response
     }
     else
     {
