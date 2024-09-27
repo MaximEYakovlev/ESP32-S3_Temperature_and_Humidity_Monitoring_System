@@ -27,6 +27,8 @@
 
 // Define GPIO1 for ADC
 #define ADC_CHANNEL ADC1_CHANNEL_0 // GPIO1 corresponds to ADC1 channel 0
+// Define GPIO11 for ADC
+#define ADC_CHANNEL ADC2_CHANNEL_0 // GPIO11 corresponds to ADC2 channel 0
 
 // Event group and tags for logging
 static EventGroupHandle_t s_wifi_event_group;
@@ -169,7 +171,7 @@ void read_adc_task(void *arg)
 }
 
 // HTTP request handler for serving temperature, humidity, and ADC data
-esp_err_t sensor_data_get_handler(httpd_req_t *req)
+esp_err_t data_get_handler(httpd_req_t *req)
 {
     typedef struct
     {
@@ -216,9 +218,9 @@ void start_webserver(void)
 
     // URI handler for serving sensor data
     httpd_uri_t sensor_data_uri = {
-        .uri = "/sensor_data",
+        .uri = "/data",
         .method = HTTP_GET,
-        .handler = sensor_data_get_handler,
+        .handler = data_get_handler,
         .user_ctx = NULL};
 
     if (httpd_start(&server, &config) == ESP_OK) // Start the web server
