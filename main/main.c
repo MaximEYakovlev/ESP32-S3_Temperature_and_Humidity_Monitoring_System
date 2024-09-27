@@ -36,7 +36,8 @@ static const int WIFI_CONNECTED_BIT = BIT0; // Bit used to indicate connection t
 static const char *TAG_WIFI = "wifi_station";
 static const char *TAG_SHT40 = "SHT40_SENSOR";
 static const char *TAG_WEB = "WEB_SERVER";
-static int s_retry_num = 0;   // Counter for Wi-Fi connection retries
+static int s_retry_num = 0; // Counter for Wi-Fi connection retries
+
 QueueHandle_t temp_queue;     // Queue used for sharing temperature and humidity data
 QueueHandle_t temp_queue_adc; // Queue used for sharing ADC data
 
@@ -62,9 +63,11 @@ void adc_init()
 {
     // Configure the ADC width (resolution: 12-bit)
     adc1_config_width(ADC_WIDTH_BIT_12);
+    adc2_config_width(ADC_WIDTH_BIT_12);
 
     // Configure attenuation (for full-scale voltage range: 0 to 3.3V)
     adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_12);
+    adc2_config_channel_atten(ADC2_CHANNEL_0, ADC_ATTEN_DB_12);
 }
 
 // Function to read temperature and humidity from SHT40 sensor
