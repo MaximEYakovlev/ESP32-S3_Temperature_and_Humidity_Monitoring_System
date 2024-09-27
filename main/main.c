@@ -25,10 +25,9 @@
 #define WIFI_PASS "vistnist21"
 #define MAX_RETRY 5 // Maximum number of retry attempts for Wi-Fi connection
 
-// Define GPIO1 for ADC
-#define ADC_CHANNEL ADC1_CHANNEL_0 // GPIO1 corresponds to ADC1 channel 0
-// Define GPIO11 for ADC
-#define ADC_CHANNEL ADC2_CHANNEL_0 // GPIO11 corresponds to ADC2 channel 0
+// Define ADC channels
+#define ADC1_CHANNEL_0 ADC1_CHANNEL_0 // GPIO1 corresponds to ADC1 channel 0
+#define ADC2_CHANNEL_0 ADC2_CHANNEL_0 // GPIO11 corresponds to ADC2 channel 0
 
 // Event group and tags for logging
 static EventGroupHandle_t s_wifi_event_group;
@@ -38,6 +37,22 @@ static const char *TAG_SHT40 = "SHT40_SENSOR";
 static const char *TAG_WEB = "WEB_SERVER";
 static int s_retry_num = 0; // Counter for Wi-Fi connection retries
 
+// Define data structures
+// Structure to hold sensor data
+typedef struct
+{
+    float temperature;
+    float humidity;
+} sensor_data;
+
+// Structure to hold ADC data
+typedef struct
+{
+    float voltage_0;
+    float voltage_1;
+} adc_data;
+
+// Declare queues
 QueueHandle_t temp_queue;     // Queue used for sharing temperature and humidity data
 QueueHandle_t temp_queue_adc; // Queue used for sharing ADC data
 
@@ -61,12 +76,13 @@ void i2c_master_init()
 // ADC initialization function
 void adc_init()
 {
-    // Configure the ADC width (resolution: 12-bit)
+    // Configure the ADC1 width (resolution: 12-bit)
     adc1_config_width(ADC_WIDTH_BIT_12);
-    adc2_config_width(ADC_WIDTH_BIT_12);
-
-    // Configure attenuation (for full-scale voltage range: 0 to 3.3V)
+    // Configure attenuation for ADC1 channel
     adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_DB_12);
+
+    // Configure attenuation for ADC2 channel
+    // Note: ADC2 is used by Wi-Fi, usage is limited
     adc2_config_channel_atten(ADC2_CHANNEL_0, ADC_ATTEN_DB_12);
 }
 
@@ -123,14 +139,7 @@ void read_sensor_task(void *arg)
         {
             ESP_LOGI(TAG_SHT40, "Temperature: %.2f°C, Humidity: %.2f%%", temperature, humidity); // Log the sensor data
 
-            // Structure to hold sensor data
-            typedef struct
-            {
-                float temperature;
-                float humidity;
-            } sensor_data_t;
-
-            sensor_data_t data = {temperature, humidity};               // Create a sensor data structure
+            sensor_data data = {temperature, humidity};                 // Create a sensor data structure
             if (xQueueSend(temp_queue, &data, portMAX_DELAY) != pdPASS) // Send the data to the queue
             {
                 ESP_LOGE(TAG_SHT40, "Failed to send data to queue"); // Log an error if the data could not be sent
@@ -152,26 +161,33 @@ void read_adc_task(void *arg)
 
     while (1)
     {
+        // Read raw ADC value from ADC1_CHANNEL_0
         int adc_value_0 = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
-        int adc_value_1 = adc2_get_raw(ADC2_CHANNEL_0); // Read raw ADC value from Channel 0
+
+        // Read raw ADC value from ADC2_CHANNEL_0
+        int adc_value_1; //= adc2_get_raw(ADC2_CHANNEL_0);
+
+        esp_err_t ret = adc2_get_raw(ADC2_CHANNEL_0, ADC_WIDTH_BIT_12, &adc_value_1); // Read ADC2 channel 0
+        if (ret != ESP_OK)
+        {
+            ESP_LOGE("ADC2", "Failed to read ADC2 channel 0");
+            adc_value_1 = 0; // Assign default value or handle error as needed
+        }
 
         // Convert raw values to voltage (assuming 12-bit resolution, 3.3V reference)
         float voltage_0 = (adc_value_0 * 3.3) / 4095.0;
         float voltage_1 = (adc_value_1 * 3.3) / 4095.0;
 
         // Structure to hold ADC data
-        typedef struct
-        {
-            float voltage_0;
-            float voltage_1;
-        } adc_data;
+        adc_data data_r = {voltage_0, voltage_1}; // Create a ADC data structure
 
-        adc_data data_r = {voltage_0, voltage_1};           // Create a ADC data structure
-        xQueueSend(temp_queue_adc, &data_r, portMAX_DELAY); // Send the data to the queue
+        if (xQueueSend(temp_queue_adc, &data_r, portMAX_DELAY) != pdPASS) // Send the data to the queue
+        {
+            ESP_LOGE("ADC", "Failed to send data to queue"); // Log an error if the data could not be sent
+        }
 
         // Log the voltage readings
-        ESP_LOGI("ADC1", "Channel 0: %.2f V", voltage_0);
-        ESP_LOGI("ADC2", "Channel 0: %.2f V", voltage_1);
+        ESP_LOGI("ADC", "ADC1 Channel 0: %.2f V, ADC2 Channel 0: %.2f V", voltage_0, voltage_1);
 
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
     }
@@ -180,31 +196,21 @@ void read_adc_task(void *arg)
 // HTTP request handler for serving temperature, humidity and ADC data
 esp_err_t data_get_handler(httpd_req_t *req)
 {
-    typedef struct
-    {
-        float temperature;
-        float humidity;
-    } sensor_data_t;
-
-    typedef struct
-    {
-        float voltage_0;
-        float voltage_1;
-    } adc_data;
-
-    sensor_data_t data;
+    sensor_data data;
     adc_data data_r;
 
     char response[128];
 
-    // Retrieve sensor data from the queue
+    // Retrieve sensor data from the queues
     if (xQueueReceive(temp_queue, &data, pdMS_TO_TICKS(100)) == pdPASS && xQueueReceive(temp_queue_adc, &data_r, pdMS_TO_TICKS(100)) == pdPASS)
     {
-        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\",  \"voltage ADC1\": \"%.2f\", \"voltage ADC2\": \"%.2f\"}", data.temperature, data.humidity, data_r.voltage_0, data_r.voltage_1); // Format the sensor data into a JSON response
+        // Format the sensor data into a JSON response with two decimal places for voltage
+        snprintf(response, sizeof(response), "{\"temperature\": \"%.2f\", \"humidity\": \"%.2f\",  \"voltage ADC1\": \"%.2f\", \"voltage ADC2\": \"%.2f\"}", data.temperature, data.humidity, data_r.voltage_0, data_r.voltage_1);
     }
     else
     {
-        snprintf(response, sizeof(response), "{\"error\": \"Failed to get sensor data\"}"); // Send an error message if data retrieval fails
+        // Send an error message if data retrieval fails
+        snprintf(response, sizeof(response), "{\"error\": \"Failed to get sensor data\"}");
     }
 
     httpd_resp_set_type(req, "application/json");                            // Set the response type to JSON
