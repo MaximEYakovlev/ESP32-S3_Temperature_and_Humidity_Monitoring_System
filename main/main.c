@@ -145,29 +145,33 @@ void read_sensor_task(void *arg)
     }
 }
 
-// Task for reading ADC values from channel
+// Task for reading ADC values from channel & sending data to the queue
 void read_adc_task(void *arg)
 {
     adc_init(); // Initialize ADC
 
     while (1)
     {
-        int adc_value = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
+        int adc_value_0 = adc1_get_raw(ADC1_CHANNEL_0); // Read raw ADC value from Channel 0
+        int adc_value_1 = adc2_get_raw(ADC2_CHANNEL_0); // Read raw ADC value from Channel 0
 
         // Convert raw values to voltage (assuming 12-bit resolution, 3.3V reference)
-        float voltage = (adc_value * 3.3) / 4095.0;
+        float voltage_0 = (adc_value_0 * 3.3) / 4095.0;
+        float voltage_1 = (adc_value_1 * 3.3) / 4095.0;
 
         // Structure to hold ADC data
         typedef struct
         {
-            float voltage;
+            float voltage_0;
+            float voltage_1;
         } adc_data;
 
-        adc_data data_r = {voltage};                        // Create a ADC data structure
+        adc_data data_r = {voltage_0, voltage_1};           // Create a ADC data structure
         xQueueSend(temp_queue_adc, &data_r, portMAX_DELAY); // Send the data to the queue
 
         // Log the voltage readings
-        ESP_LOGI("ADC", "Channel 0: %.2f V", voltage);
+        ESP_LOGI("ADC1", "Channel 0: %.2f V", voltage_0);
+        ESP_LOGI("ADC2", "Channel 0: %.2f V", voltage_1);
 
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
     }
