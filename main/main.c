@@ -56,6 +56,42 @@ typedef struct
 QueueHandle_t temp_queue;     // Queue used for sharing temperature and humidity data
 QueueHandle_t temp_queue_adc; // Queue used for sharing ADC data
 
+// HTML code for displaying sensor data
+const char index_html[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Sensor Readings</title>
+    <meta charset="utf-8" />
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+                document.getElementById('temperature').innerText = data.temperature + ' °C';
+                document.getElementById('humidity').innerText = data.humidity + ' %';
+                document.getElementById('voltage1').innerText = data["voltage ADC1"] + ' V';
+                document.getElementById('voltage2').innerText = data["voltage ADC2"] + ' V';
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Update data every 2 seconds
+        setInterval(fetchData, 2000);
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <h1>ESP32 Sensor Dashboard</h1>
+    <p>Temperature: <span id="temperature">--</span></p>
+    <p>Humidity: <span id="humidity">--</span></p>
+    <p>ADC Voltage 1: <span id="voltage1">--</span></p>
+    <p>ADC Voltage 2: <span id="voltage2">--</span></p>
+</body>
+</html>
+)rawliteral";
+
 // I2C initialization function
 void i2c_master_init()
 {
