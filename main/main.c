@@ -273,15 +273,23 @@ void start_webserver(void)
     httpd_handle_t server = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG(); // Default server configuration
 
+    // URI handler for the main HTML page
+    httpd_uri_t index_uri = {
+        .uri = "/", // URI path
+        .method = HTTP_GET,
+        .handler = index_html_handler, // Handler function for HTML
+        .user_ctx = NULL};
+
     // URI handler for serving sensor data
     httpd_uri_t sensor_data_uri = {
         .uri = "/data",
         .method = HTTP_GET,
-        .handler = data_get_handler,
+        .handler = data_get_handler, // Handler function for serving temperature, humidity and ADC data
         .user_ctx = NULL};
 
     if (httpd_start(&server, &config) == ESP_OK) // Start the web server
     {
+        httpd_register_uri_handler(server, &index_uri);       // Register HTML handler
         httpd_register_uri_handler(server, &sensor_data_uri); // Register the URI handler for sensor data
     }
 }
@@ -290,6 +298,7 @@ void start_webserver(void)
 void web_server_task(void *arg)
 {
     start_webserver(); // Start the web server
+
     while (1)
     {
         vTaskDelay(pdMS_TO_TICKS(10000)); // Keep the task alive by delaying periodically
