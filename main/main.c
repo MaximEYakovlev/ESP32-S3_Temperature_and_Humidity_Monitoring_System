@@ -258,6 +258,15 @@ esp_err_t data_get_handler(httpd_req_t *req)
     return ESP_OK; // Return success
 }
 
+// Handler for the main HTML page
+esp_err_t index_html_handler(httpd_req_t *req)
+{
+    httpd_resp_set_type(req, "text/html");                // Set content type to HTML
+    httpd_resp_set_hdr(req, "Cache-Control", "no-cache"); // Prevent caching
+    httpd_resp_send(req, index_html, strlen(index_html)); // Send HTML page
+    return ESP_OK;
+}
+
 // Function to configure and start the web server
 void start_webserver(void)
 {
