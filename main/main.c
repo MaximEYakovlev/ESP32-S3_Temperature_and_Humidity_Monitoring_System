@@ -57,7 +57,7 @@ QueueHandle_t temp_queue;     // Queue used for sharing temperature and humidity
 QueueHandle_t temp_queue_adc; // Queue used for sharing ADC data
 
 // HTML code for displaying sensor data
-const char index_html[] PROGMEM = R"rawliteral(
+static const char index_html[] = R"rawliteral(
 <!DOCTYPE html>
 <html>
 <head>
