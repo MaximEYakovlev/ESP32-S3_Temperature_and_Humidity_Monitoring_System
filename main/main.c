@@ -325,6 +325,23 @@ void app_main(void)
     // Initialize SPIFFS filesystem.
     init_spiffs();
 
+    // Test writing
+    write_data_to_file("/spiffs/test.txt", "Hello, SPIFFS!");
+
+    // Test reading
+    FILE *f = fopen("/spiffs/test.txt", "r");
+    if (f == NULL)
+    {
+        ESP_LOGE(TAG, "Couldn't open test.txt for reading");
+    }
+    else
+    {
+        char line[64];
+        fgets(line, sizeof(line), f);
+        ESP_LOGI(TAG, "The test.txt content: %s", line);
+        fclose(f);
+    }
+
     // Initialize Wi-Fi connection.
     wifi_init_sta();
 

@@ -15,7 +15,8 @@
     "idf.toolsPath": "/home/maxim/Desktop/NIST/rust-react-tauri-desktop",
     "files.associations": {
         "queue.h": "c",
-        "adc.h": "c"
+        "adc.h": "c",
+        "esp_spiffs.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
