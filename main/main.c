@@ -1,3 +1,11 @@
+// https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html 
+// Step 4. Set up the Environment Variables
+// . $HOME/esp/esp-idf/export.sh
+// idf.py set-target esp32-S3
+// idf.py build
+// idf.py flash
+// idf.py monitor
+
 #include <stdio.h>
 #include "driver/i2c.h"
 #include "driver/adc.h"
@@ -271,7 +279,7 @@ void read_adc_task(void *arg)
 
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
-}
+}ESP32-S3_Monitoring_System
 
 void record_data_task(void *arg)
 {
@@ -284,7 +292,7 @@ void record_data_task(void *arg)
             xQueueReceive(temp_queue_adc, &adc_data_r, portMAX_DELAY) == pdPASS)
         {
             add_record(temp_data.temperature, temp_data.humidity, adc_data_r.voltage_0, adc_data_r.voltage_1);
-        }
+        }ESP32-S3_Monitoring_System
 
         vTaskDelay(pdMS_TO_TICKS(10));
     }
@@ -321,7 +329,7 @@ esp_err_t data_get_handler(httpd_req_t *req)
 esp_err_t index_html_handler(httpd_req_t *req)
 {
     httpd_resp_set_type(req, "text/html");
-    httpd_resp_set_hdr(req, "Cache-Control", "no-cache");
+    httpd_resp_set_hdr(req, "Cache-CESP32-S3_Monitoring_Systemontrol", "no-cache");
     httpd_resp_send(req, index_html, strlen(index_html));
     return ESP_OK;
 }
